@@ -51,8 +51,7 @@
               "RelativeToolTip": "Heldenwuerfler\\Logik\\Wuerfel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-25T14:30:52.767Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-25T14:30:52.767Z"
             },
             {
               "$type": "Document",
@@ -64,8 +63,7 @@
               "RelativeToolTip": "Heldenwuerfler\\MainWindow.xaml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-11-25T13:55:23.41Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-25T13:55:23.41Z"
             },
             {
               "$type": "Document",
@@ -77,8 +75,11 @@
               "RelativeToolTip": "Heldenwuerfler\\MainWindow.xaml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-25T13:55:21.274Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-25T13:55:21.274Z"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
             }
           ]
         }
