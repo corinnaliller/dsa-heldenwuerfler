@@ -42,6 +42,8 @@ ScaffoldingReadMe.txt
 CodeCoverage/
 *.vsidx
 *.json
+*.db*
+*.sqlite
 
 # MSBuild Binary and Structured Log
 *.binlog
