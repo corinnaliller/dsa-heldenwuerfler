@@ -1,5 +1,7 @@
 ﻿using System;
 
+namespace Heldenwuerfler
+
 public class EigenschaftsWuerfler
 {
 	public EigenschaftsWuerfler()
@@ -16,51 +18,47 @@ public class EigenschaftsWuerfler
         #endregion Constructors
 
         #region Public Methods
-        public bool EigenschaftsProbe(int eigenschaftsWert, int erschwernis = 0)
+        public (AttributErgebnis, int) EigenschaftsProbe(int eigenschaftsWert, int erschwernis = 0, int erleichterung = 0)
         {
+            AttributErgebnis ergebnis;
+            int punkte = 0;
             int wuerfelErgebnis = this.wuerfel.Wuerfeln();
-            if (erschwernis != 0)
-            {
-                eigenschaftsWert -= erschwernis;
-            }
+            eigenschaftsWert -= erschwernis;
             if (wuerfelErgebnis == 1)
             {
-                return BestaetigteEins(eigenschaftsWert);
+                if(BestaetigteEins(eigenschaftsWert))
+                {
+                    ergebnis = AttributErgebnis.KritischerErfolg;
+                }
             }
             else if (wuerfelErgebnis == 20)
             {
-
-            }
-            if (wuerfelErgebnis > eigenschaftsWert)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }   
-        }      
-        public int ProbenErgebnis(int eigenschaftsWert, int erschwernis = 0)
-        {   
-            int wuerfelErgebnis = this.wuerfel.Wuerfeln();
-            int differenz = 0;
-            if (erschwernis >= 0)
-            {
-                eigenschaftsWert -= erschwernis;
-                differenz = eigenschaftsWert - wuerfelErgebnis;
-            }
-            else
-            {   
-                differenz = eigenschaftsWert - wuerfelErgebnis;
-                if (differenz < 0)
+                if(BestaetigteZwanzig(eigenschaftsWert))
                 {
-                
+                    ergebnis = AttributErgebnis.Patzer;
+                }
+            }
+            else
+            {
+                if(wuerfelErgebnis <= eigenschaftsWert)
+                {
+                    ergebnis = AttributErgebnis.Erfolg;
+                    punkte = eigenschaftsWert - wuerfelErgebnis;
+                }
+                else
+                {   
+                    if(erleichterung > 0)
+                {
+
                 }
                 else
                 {
-                    return differenz;
+
+                }
                 }
             }
+            return (AttrubutErgebnis, punkte);
+        }
         #endregion Public Methods
 
         #region Private Methods
