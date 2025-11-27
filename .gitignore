@@ -44,6 +44,7 @@ CodeCoverage/
 *.json
 *.db*
 *.sqlite
+*.wsuo
 
 # MSBuild Binary and Structured Log
 *.binlog
