@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Heldenwuerfler"
+    "\\Heldenwuerfler",
+    "\\Heldenwuerfler\\Logik"
   ],
-  "SelectedNode": "\\Heldenwuerfler\\Wuerfel.cs",
+  "SelectedNode": "\\Heldenwuerfler\\Logik\\EigenschaftsWuerfler.cs",
   "PreviewInSolutionExplorer": false
 }
