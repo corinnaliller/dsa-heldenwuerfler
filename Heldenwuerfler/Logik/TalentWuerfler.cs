@@ -135,9 +135,8 @@ namespace Heldenwuerfler.Logik
                 { 
                     ergebnis = TalentErgebnis.Misserfolg; 
                 }
-
             }
-                return ergebnis;
+            return ergebnis;
         }
         #endregion Private Methods
     }
