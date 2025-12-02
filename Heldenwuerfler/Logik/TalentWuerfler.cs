@@ -20,10 +20,11 @@ namespace Heldenwuerfler.Logik
         #endregion Constructors
 
         #region Public Methods
-        public (TalentErgebnis, int) TalentProbe(int talentWert, int[] eigenschaftsWerte, int erschwernis = 0, int erleichterung = 0)
+        public TalentProbenErgebnis TalentProbe(int talentWert, int[] eigenschaftsWerte, int erschwernis = 0, int erleichterung = 0)
         {
+            TalentProbenErgebnis ergebnis = new TalentProbenErgebnis();
             int[] talentWurf = this.TalentWurf();
-            return (TalentErgebnis.Misserfolg, 0);
+            return ergebnis;
         }
         #endregion Public Methods
 

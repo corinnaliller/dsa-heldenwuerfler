@@ -16,42 +16,28 @@ internal class EigenschaftsWuerfler
     #endregion Constructors
 
     #region Public Methods
-    public (AttributErgebnis, int) EigenschaftsProbe(int eigenschaftsWert, int erschwernis = 0, int erleichterung = 0)
+    public EigenschaftsProbenErgebnis EigenschaftsProbe(int eigenschaftsWert, int erschwernis = 0, int erleichterung = 0)
     {
-        AttributErgebnis ergebnis;
+        EigenschaftsProbenErgebnis probenErgebnis = new EigenschaftsProbenErgebnis();
+        EigenschaftsErgebnis ergebnis;
         int punkte = 0;
         int wuerfelErgebnis = this.wuerfel.Wuerfeln();
         eigenschaftsWert -= erschwernis;
         if (wuerfelErgebnis == 1)
         {
-            if (BestaetigteEins(eigenschaftsWert))
-            {
-                ergebnis = AttributErgebnis.KritischerErfolg;
-                punkte = eigenschaftsWert;
-            }
-            else
-            {
-                ergebnis = AttributErgebnis.Erfolg;
-                punkte = eigenschaftsWert;
-            }
+            ergebnis = EinserProbe(eigenschaftsWert);
+            punkte = eigenschaftsWert;
         }
         else if (wuerfelErgebnis == 20)
         {
-            if (BestaetigteZwanzig(eigenschaftsWert))
-            {
-                ergebnis = AttributErgebnis.Patzer;
-            }
-            else
-            {
-                ergebnis = AttributErgebnis.Misserfolg;
-                punkte = eigenschaftsWert - wuerfelErgebnis;
-            }
+            ergebnis = ZwanzigerProbe(eigenschaftsWert);
+            punkte = eigenschaftsWert - wuerfelErgebnis;
         }
         else
         {
             if (wuerfelErgebnis <= eigenschaftsWert)
             {
-                ergebnis = AttributErgebnis.Erfolg;
+                ergebnis = EigenschaftsErgebnis.Erfolg;
                 punkte = eigenschaftsWert - wuerfelErgebnis;
             }
             else
@@ -62,43 +48,54 @@ internal class EigenschaftsWuerfler
                     if (diff <= erleichterung)
                     {
                         punkte = erleichterung - diff;
-                        ergebnis = AttributErgebnis.Erfolg;
+                        ergebnis = EigenschaftsErgebnis.Erfolg;
                     }
                     else
                     {
-                        ergebnis = AttributErgebnis.Misserfolg;
+                        ergebnis = EigenschaftsErgebnis.Misserfolg;
                         punkte = -diff;
                     }
                 }
                 else
                 {
-                    ergebnis = AttributErgebnis.Misserfolg;
+                    ergebnis = EigenschaftsErgebnis.Misserfolg;
                     punkte = eigenschaftsWert - wuerfelErgebnis;
                 }
             }
         }
-        return (ergebnis, punkte);
+        probenErgebnis.Ergebnis = ergebnis;
+        probenErgebnis.Punkte = punkte;
+        probenErgebnis.EigenschaftsWurf = wuerfelErgebnis;
+        return probenErgebnis;
     }
     #endregion Public Methods
 
     #region Private Methods
-    private bool BestaetigteEins(int eigenschaftsWert)
+    private EigenschaftsErgebnis EinserProbe(int eigenschaftsWert)
     {
         int zweiterWurf = this.wuerfel.Wuerfeln();
-        if (zweiterWurf <= eigenschaftsWert)
+        if (zweiterWurf == 1)
         {
-            return true;
+            return EigenschaftsErgebnis.UltraKritischerErfolg;
         }
-        return false;
+        else if (zweiterWurf <= eigenschaftsWert)
+        {
+            return EigenschaftsErgebnis.KritischerErfolg;
+        }
+        return EigenschaftsErgebnis.Erfolg;
     }
-    private bool BestaetigteZwanzig(int eigenschaftsWert)
+    private EigenschaftsErgebnis ZwanzigerProbe(int eigenschaftsWert)
     {
         int zweiterWurf = this.wuerfel.Wuerfeln();
-        if (zweiterWurf >= eigenschaftsWert)
+        if (zweiterWurf == 20)
         {
-            return true;
+            return EigenschaftsErgebnis.TotalerPatzer;
         }
-        return false;
+        else if (zweiterWurf >= eigenschaftsWert)
+        {
+            return EigenschaftsErgebnis.Patzer;
+        }
+        return EigenschaftsErgebnis.Misserfolg;
     }
     #endregion Private Methods
 }

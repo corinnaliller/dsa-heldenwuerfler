@@ -2,12 +2,14 @@
 
 namespace Heldenwuerfler.Logik;
 
-internal enum AttributErgebnis
+internal enum EigenschaftsErgebnis
 {
     Erfolg,
     Misserfolg,
     KritischerErfolg,
-    Patzer
+    Patzer,
+    UltraKritischerErfolg,
+    TotalerPatzer
 }
 
 internal enum TalentErgebnis
