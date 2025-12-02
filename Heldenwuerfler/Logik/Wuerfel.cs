@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Heldenwuerfler
+namespace Heldenwuerfler.Logik;
 
 public class Wuerfel
 {

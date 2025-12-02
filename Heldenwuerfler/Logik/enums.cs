@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Heldenwuerfler
+namespace Heldenwuerfler.Logik;
 
-public enum AttributErgebnis
+internal enum AttributErgebnis
 {
     Erfolg,
     Misserfolg,
@@ -10,12 +10,12 @@ public enum AttributErgebnis
     Patzer
 }
 
-public enum TalentErgebnis
+internal enum TalentErgebnis
 {
     Erfolg, 
     Misserfolg,
-    Doppel-1,
-    Doppel-20,
-    Dreifach-1,
-    Dreifach-20
+    Doppel1,
+    Doppel20,
+    Dreifach1,
+    Dreifach20
 }

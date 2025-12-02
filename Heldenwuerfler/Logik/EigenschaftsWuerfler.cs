@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Heldenwuerfler;
+namespace Heldenwuerfler.Logik;
 
-public class EigenschaftsWuerfler
+internal class EigenschaftsWuerfler
 {
     #region Attributes
     private Wuerfel wuerfel;
