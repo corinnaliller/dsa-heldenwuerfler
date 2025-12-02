@@ -22,6 +22,7 @@ internal class EigenschaftsWuerfler
         EigenschaftsErgebnis ergebnis;
         int punkte = 0;
         int wuerfelErgebnis = this.wuerfel.Wuerfeln();
+        probenErgebnis.EigenschaftsWurf = wuerfelErgebnis;
         eigenschaftsWert -= erschwernis;
         if (wuerfelErgebnis == 1)
         {
@@ -65,7 +66,7 @@ internal class EigenschaftsWuerfler
         }
         probenErgebnis.Ergebnis = ergebnis;
         probenErgebnis.Punkte = punkte;
-        probenErgebnis.EigenschaftsWurf = wuerfelErgebnis;
+        
         return probenErgebnis;
     }
     #endregion Public Methods
