@@ -18,7 +18,7 @@ public class EigenschaftsWuerfler
     #region Public Methods
     public (AttributErgebnis, int) EigenschaftsProbe(int eigenschaftsWert, int erschwernis = 0, int erleichterung = 0)
     {
-        AttributErgebnis ergebnis = AttributErgebnis.Misserfolg;
+        AttributErgebnis ergebnis;
         int punkte = 0;
         int wuerfelErgebnis = this.wuerfel.Wuerfeln();
         eigenschaftsWert -= erschwernis;
@@ -27,6 +27,12 @@ public class EigenschaftsWuerfler
             if (BestaetigteEins(eigenschaftsWert))
             {
                 ergebnis = AttributErgebnis.KritischerErfolg;
+                punkte = eigenschaftsWert;
+            }
+            else
+            {
+                ergebnis = AttributErgebnis.Erfolg;
+                punkte = eigenschaftsWert;
             }
         }
         else if (wuerfelErgebnis == 20)
@@ -34,6 +40,11 @@ public class EigenschaftsWuerfler
             if (BestaetigteZwanzig(eigenschaftsWert))
             {
                 ergebnis = AttributErgebnis.Patzer;
+            }
+            else
+            {
+                ergebnis = AttributErgebnis.Misserfolg;
+                punkte = eigenschaftsWert - wuerfelErgebnis;
             }
         }
         else
@@ -47,11 +58,22 @@ public class EigenschaftsWuerfler
             {
                 if (erleichterung > 0)
                 {
-
+                    int diff = wuerfelErgebnis - eigenschaftsWert;
+                    if (diff <= erleichterung)
+                    {
+                        punkte = erleichterung - diff;
+                        ergebnis = AttributErgebnis.Erfolg;
+                    }
+                    else
+                    {
+                        ergebnis = AttributErgebnis.Misserfolg;
+                        punkte = -diff;
+                    }
                 }
                 else
                 {
-
+                    ergebnis = AttributErgebnis.Misserfolg;
+                    punkte = eigenschaftsWert - wuerfelErgebnis;
                 }
             }
         }
