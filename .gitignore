@@ -28,6 +28,7 @@ bld/
 project.lock.json
 project.fragment.lock.json
 artifacts/
+*/.vs/*
 
 # ASP.NET Scaffolding
 ScaffoldingReadMe.txt
@@ -47,6 +48,8 @@ CodeCoverage/
 *.sqlite*
 *.sqlite
 *.wsuo
+slnx.sqlite
+.vs
 
 # MSBuild Binary and Structured Log
 *.binlog

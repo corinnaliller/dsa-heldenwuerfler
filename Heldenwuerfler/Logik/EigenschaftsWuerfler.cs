@@ -1,53 +1,51 @@
 ﻿using System;
 
-namespace Heldenwuerfler
+namespace Heldenwuerfler;
 
 public class EigenschaftsWuerfler
 {
-	public EigenschaftsWuerfler()
-	{
-        #region Attributes
-        private Wuerfel wuerfel;
-        #endregion Attributes
+    #region Attributes
+    private Wuerfel wuerfel;
+    #endregion Attributes
 
-        #region Constructors
-        public EigenschaftsWuerfler()
-        {
-            this.wuerfel = new Wuerfel(20);
-        }
-        #endregion Constructors
+    #region Constructors
+    public EigenschaftsWuerfler()
+    {
+        this.wuerfel = new Wuerfel(20);
+    }
+    #endregion Constructors
 
-        #region Public Methods
-        public (AttributErgebnis, int) EigenschaftsProbe(int eigenschaftsWert, int erschwernis = 0, int erleichterung = 0)
+    #region Public Methods
+    public (AttributErgebnis, int) EigenschaftsProbe(int eigenschaftsWert, int erschwernis = 0, int erleichterung = 0)
+    {
+        AttributErgebnis ergebnis = AttributErgebnis.Misserfolg;
+        int punkte = 0;
+        int wuerfelErgebnis = this.wuerfel.Wuerfeln();
+        eigenschaftsWert -= erschwernis;
+        if (wuerfelErgebnis == 1)
         {
-            AttributErgebnis ergebnis;
-            int punkte = 0;
-            int wuerfelErgebnis = this.wuerfel.Wuerfeln();
-            eigenschaftsWert -= erschwernis;
-            if (wuerfelErgebnis == 1)
+            if (BestaetigteEins(eigenschaftsWert))
             {
-                if(BestaetigteEins(eigenschaftsWert))
-                {
-                    ergebnis = AttributErgebnis.KritischerErfolg;
-                }
+                ergebnis = AttributErgebnis.KritischerErfolg;
             }
-            else if (wuerfelErgebnis == 20)
+        }
+        else if (wuerfelErgebnis == 20)
+        {
+            if (BestaetigteZwanzig(eigenschaftsWert))
             {
-                if(BestaetigteZwanzig(eigenschaftsWert))
-                {
-                    ergebnis = AttributErgebnis.Patzer;
-                }
+                ergebnis = AttributErgebnis.Patzer;
+            }
+        }
+        else
+        {
+            if (wuerfelErgebnis <= eigenschaftsWert)
+            {
+                ergebnis = AttributErgebnis.Erfolg;
+                punkte = eigenschaftsWert - wuerfelErgebnis;
             }
             else
             {
-                if(wuerfelErgebnis <= eigenschaftsWert)
-                {
-                    ergebnis = AttributErgebnis.Erfolg;
-                    punkte = eigenschaftsWert - wuerfelErgebnis;
-                }
-                else
-                {   
-                    if(erleichterung > 0)
+                if (erleichterung > 0)
                 {
 
                 }
@@ -55,31 +53,30 @@ public class EigenschaftsWuerfler
                 {
 
                 }
-                }
             }
-            return (AttrubutErgebnis, punkte);
         }
-        #endregion Public Methods
-
-        #region Private Methods
-        private bool BestaetigteEins(int eigenschaftsWert)
-        {
-            int zweiterWurf = this.wuerfel.Wuerfeln();
-            if(zweiterWurf <= eigenschaftsWert)
-            {
-                return true;
-            }
-            return false;
-        }
-        private bool BestaetigteZwanzig(int eigenschaftsWert)
-        {
-            int zweiterWurf = this.wuerfel.Wuerfeln();
-            if(zweiterWurf >= eigenschaftsWert)
-            {
-                return true;
-            }
-        return false;
-        }
-        #endregion Private Methods
+        return (ergebnis, punkte);
     }
+    #endregion Public Methods
+
+    #region Private Methods
+    private bool BestaetigteEins(int eigenschaftsWert)
+    {
+        int zweiterWurf = this.wuerfel.Wuerfeln();
+        if (zweiterWurf <= eigenschaftsWert)
+        {
+            return true;
+        }
+        return false;
+    }
+    private bool BestaetigteZwanzig(int eigenschaftsWert)
+    {
+        int zweiterWurf = this.wuerfel.Wuerfeln();
+        if (zweiterWurf >= eigenschaftsWert)
+        {
+            return true;
+        }
+        return false;
+    }
+    #endregion Private Methods
 }
